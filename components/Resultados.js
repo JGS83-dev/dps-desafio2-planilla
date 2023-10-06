@@ -66,34 +66,25 @@ const Resultados = ({ navigation }) => {
                   {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
                         (
                             <View style={styles.container}>
-                                <Text style={styles.letra}>Resultados</Text>
-
                                 <View style={styles.inputContainer}>
-                                    <Text style={styles.letra}>Desc. Renta:</Text>
-                                    <Text style={styles.desc}>
-                                        Aqui aplica el descuento
-                                    </Text>
+                                <Text style={styles.letra}>Desc. Renta:</Text>
+                                    <Text style={styles.desc}>Descuento</Text>
                                 </View>
 
                                 <View style={styles.inputContainer}>
-                                    <Text style={styles.letra}>Desc. ISSS:</Text>
-                                    <Text style={styles.desc}>
-                                        Aqui aplica el descuento
-                                    </Text>
+                                <Text style={styles.letra}>Desc. ISSS:</Text>
+                                    <Text style={styles.desc}>Descuento</Text>
                                 </View>
 
                                 <View style={styles.inputContainer}>
-                                    <Text style={styles.letra}>Desc. AFP:</Text>
-                                    <Text style={styles.desc}>
-                                        Aqui aplica el descuento
-                                    </Text>
+                                <Text style={styles.letra}>Desc. AFP:</Text>
+                                    <Text style={styles.desc}>Descuento</Text>
+                             
                                 </View>
 
                                 <View style={styles.inputContainer}>
                                     <Text style={styles.letra}>Sueldo neto:</Text>
-                                    <Text style={styles.desc}>
-                                        Aqui aplica el descuento
-                                    </Text>
+                                    <Text style={styles.desc}>Descuento</Text>
                                 </View>
                             </View>
                         )}
@@ -109,19 +100,29 @@ export default Resultados
 
 const styles = StyleSheet.create({
     letra: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
-        color: colores.letra,
+        color: 'black',
         textAlign:'center',
+        padding:5,
     },
     desc: {
-        fontSize: 24,
+        fontSize: 20,
         color: colores.letra
     },
     container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    inputContainer: {
+        width: "80%",
+        flexDirection: "row",
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius: 10,
+        marginTop: 5,
+        justifyContent: "space-evenly",
     },
 });
 
