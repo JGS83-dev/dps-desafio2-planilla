@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "dps-desafio2-planilla",
+    "slug": "dps-desafio2-planilla",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "dps-desafio2-planilla"
+}
