@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContenedorPrincipal from './ContenedorPrincipal';
 import {
     Text,
     StyleSheet,
-    Alert
+    Alert,
+    View
 } from 'react-native';
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -35,31 +36,38 @@ const Resultados = ({ navigation }) => {
                         'Pasos requeridos',
                         'Debe completar el formulario',
                         [
-                          {
-                            text: 'Aceptar',
-                            onPress: () => {
-                                console.log('Regresando a formulario');
-                                navigation.navigate("Formulario");
+                            {
+                                text: 'Aceptar',
+                                onPress: () => {
+                                    console.log('Regresando a formulario');
+                                    navigation.navigate("Formulario");
+                                },
+                                style: 'default',
                             },
-                            style: 'default',
-                          },
                         ],
-                      );
+                    );
                 }
-    
+
             } catch (e) {
                 console.log('Ocurrio un error:', e);
             }
         };
         CargarDatosFormulario();
-      }, []);
+    }, []);
 
     return (
 
         <ContenedorPrincipal titulo="Resultados"
             navigation={navigation}
             contenido={(
-                <Text style={styles.letra}>Resultados</Text>
+                <>
+                    {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
+                        (
+                            <View>
+                                <Text>Resultado</Text>
+                            </View>
+                        )}
+                </>
             )}></ContenedorPrincipal>
 
     );
