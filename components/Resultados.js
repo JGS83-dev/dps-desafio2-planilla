@@ -23,9 +23,9 @@ const Resultados = ({ navigation }) => {
                 const apellidoStorage = await AsyncStorage.getItem('apellido');
                 const sueldoStorage = await AsyncStorage.getItem('sueldo');
                 console.log("Leyendo datos...");
-                console.log(nombreStorage);
-                console.log(apellidoStorage);
-                console.log(sueldoStorage);
+                // console.log(nombreStorage);
+                // console.log(apellidoStorage);
+                // console.log(sueldoStorage);
                 if (nombreStorage !== null && apellidoStorage !== null && sueldoStorage !== 0) {
                     await setNombre(nombreStorage);
                     await setApellido(apellidoStorage);
