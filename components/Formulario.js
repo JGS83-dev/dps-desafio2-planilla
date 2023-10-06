@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     letra: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: colores.letra
+        color: colores.letra,
     },
     container: {
         flex: 1,

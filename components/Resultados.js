@@ -105,9 +105,10 @@ export default Resultados
 
 const styles = StyleSheet.create({
     letra: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: colores.letra
+        color: colores.letra,
+        textAlign:'center',
     },
     desc: {
         fontSize: 30,
