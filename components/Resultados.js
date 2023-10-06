@@ -102,13 +102,12 @@ const styles = StyleSheet.create({
     letra: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'black',
+        color: '#171D26',
         textAlign:'center',
-        padding:5,
     },
     desc: {
         fontSize: 20,
-        color: colores.letra
+        color: '#F2F4F7'
     },
     container: {
         flex: 1,
