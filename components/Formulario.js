@@ -2,17 +2,53 @@ import React from 'react';
 import ContenedorPrincipal from './ContenedorPrincipal';
 import {
     Text,
-    StyleSheet
+    StyleSheet,
+    Dimensions,
+    View,
+    TextInput,
+    Button
 } from 'react-native';
 import { colores } from '../config/colores';
+const screenHeight = Dimensions.get("window").height;
+const cabeceraMensajeHeight = 0.07 * screenHeight;
+const cabeceraMensajePadding = 0.01 * screenHeight;
+const cabeceraMensajeMargin = 0.03 * screenHeight;
+const iconSize = 0.2 * screenHeight;
+const iconMargin = 0.01 * screenHeight;
 
 const Formulario = ({navigation}) => {
     return (
         
-            <ContenedorPrincipal titulo="Formulario"
+            <ContenedorPrincipal titulo="Ejercicio Planilla"
             navigation={navigation} 
             contenido={(
-                <Text style={styles.letra}>Formulario</Text>
+                <>
+                 <Text style={styles.letraTitulo}>Complete los formularios</Text>
+                 <View style={styles.inputContainer}>
+                <Text style={styles.letra}>Nombre:</Text>
+                <TextInput
+                  placeholder="Nombres"
+                  style={styles.input}
+                />
+              </View>
+
+
+              <View style={styles.inputContainer}>
+                <Text style={styles.letra}>Apellido:</Text>
+                <TextInput
+                  placeholder="Nombres"
+                  style={styles.input}
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <Text style={styles.letra}>Sueldo:</Text>
+                <TextInput
+                  placeholder="Nombres"
+                  style={styles.input}
+                />
+              </View>
+                </>
             )}></ContenedorPrincipal>
         
     );
@@ -25,6 +61,59 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: colores.letra
-    }
+    },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    
+      containerIzquierdo: {
+        justifyContent: "flex-start",
+        padding: 5,
+      },
+      inputContainer: {
+        width: "80%",
+        flexDirection: "row",
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius: 10,
+        marginTop: 5,
+        justifyContent: "space-evenly",
+      },
+      buttonContainer: {
+        width: "60%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20,
+      },
+      button: {
+        backgroundColor: colores.fondoBarras,
+        width: "100%",
+        padding: 5,
+        alignItems: "center",
+        marginBottom: 10,
+      },
+      buttonText: {
+        color: colores.letra,
+        fontSize: 16,
+      },
+      letraTitulo: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: colores.letra,
+      },
+      letra: {
+        fontSize: 16,
+        color: colores.letra,
+      },
+      cabeceraMensaje: {
+        backgroundColor: colores.fondoBarras,
+        height: cabeceraMensajeHeight,
+        padding: cabeceraMensajePadding,
+        marginTop: cabeceraMensajeMargin,
+        alignItems: "center",
+        alignContent: "center",
+      },
 });
 
