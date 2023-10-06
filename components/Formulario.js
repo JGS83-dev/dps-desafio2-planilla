@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContenedorPrincipal from './ContenedorPrincipal';
 import {
     Text,
@@ -15,21 +15,23 @@ const screenHeight = Dimensions.get("window").height;
 const cabeceraMensajeHeight = 0.07 * screenHeight;
 const cabeceraMensajePadding = 0.01 * screenHeight;
 const cabeceraMensajeMargin = 0.03 * screenHeight;
-const [nombre, setNombre] = useState('');
-const [apellido, setApellido] = useState('');
-const [sueldo, setSueldo] = useState('');
-
-const GuardarDatosFormulario = async () => {
-    try {
-        await AsyncStorage.setItem('nombre', nombre);
-        await AsyncStorage.setItem('apellido', apellido);
-        await AsyncStorage.setItem('sueldo', sueldo);
-    } catch (e) {
-        console.log('Ocurrio un error:', e)
-    }
-};
 
 const Formulario = ({ navigation }) => {
+
+    const [nombre, setNombre] = useState('');
+    const [apellido, setApellido] = useState('');
+    const [sueldo, setSueldo] = useState(0);
+
+    const GuardarDatosFormulario = async () => {
+        try {
+            await AsyncStorage.setItem('nombre', nombre);
+            await AsyncStorage.setItem('apellido', apellido);
+            await AsyncStorage.setItem('sueldo', sueldo);
+        } catch (e) {
+            console.log('Ocurrio un error:', e)
+        }
+    };
+
     return (
 
         <ContenedorPrincipal titulo="Ejercicio Planilla"
@@ -42,6 +44,7 @@ const Formulario = ({ navigation }) => {
                         <Text style={styles.letra}>Nombre:</Text>
                         <TextInput
                             placeholder="Nombres"
+                            onChangeText={text => setNombre(text)}
                             style={styles.input}
                         />
                     </View>
@@ -51,6 +54,7 @@ const Formulario = ({ navigation }) => {
                         <Text style={styles.letra}>Apellido:</Text>
                         <TextInput
                             placeholder="Apellido"
+                            onChangeText={text => setApellido(text)}
                             style={styles.input}
                         />
                     </View>
@@ -59,6 +63,7 @@ const Formulario = ({ navigation }) => {
                         <Text style={styles.letra}>Sueldo:</Text>
                         <TextInput
                             placeholder="Sueldo"
+                            onChangeText={text => setSueldo(text)}
                             style={styles.input}
                         />
                     </View>
