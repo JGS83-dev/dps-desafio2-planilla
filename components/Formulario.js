@@ -9,18 +9,32 @@ import {
     Button
 } from 'react-native';
 import { colores } from '../config/colores';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const screenHeight = Dimensions.get("window").height;
 const cabeceraMensajeHeight = 0.07 * screenHeight;
 const cabeceraMensajePadding = 0.01 * screenHeight;
 const cabeceraMensajeMargin = 0.03 * screenHeight;
-const iconSize = 0.2 * screenHeight;
-const iconMargin = 0.01 * screenHeight;
+const [nombre, setNombre] = useState('');
+const [apellido, setApellido] = useState('');
+const [sueldo, setSueldo] = useState('');
 
-const Formulario = ({navigation}) => {
+const GuardarDatosFormulario = async () => {
+    try {
+        await AsyncStorage.setItem('nombre', nombre);
+        await AsyncStorage.setItem('apellido', apellido);
+        await AsyncStorage.setItem('sueldo', sueldo);
+    } catch (e) {
+        console.log('Ocurrio un error:', e)
+    }
+};
+
+const Formulario = ({ navigation }) => {
     return (
         
             <ContenedorPrincipal titulo="Ejercicio Planilla"
             navigation={navigation} 
+
             contenido={(
                 <>
                  <Text style={styles.letraTitulo}>Complete los formularios</Text>
@@ -36,7 +50,7 @@ const Formulario = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <Text style={styles.letra}>Apellido:</Text>
                 <TextInput
-                  placeholder="Nombres"
+                  placeholder="Apellido"
                   style={styles.input}
                 />
               </View>
@@ -44,13 +58,13 @@ const Formulario = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <Text style={styles.letra}>Sueldo:</Text>
                 <TextInput
-                  placeholder="Nombres"
+                  placeholder="Sueldo"
                   style={styles.input}
                 />
               </View>
                 </>
             )}></ContenedorPrincipal>
-        
+
     );
 }
 
@@ -66,13 +80,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-      },
-    
-      containerIzquierdo: {
+    },
+
+    containerIzquierdo: {
         justifyContent: "flex-start",
         padding: 5,
-      },
-      inputContainer: {
+    },
+    inputContainer: {
         width: "80%",
         flexDirection: "row",
         paddingHorizontal: 15,
@@ -80,40 +94,40 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 5,
         justifyContent: "space-evenly",
-      },
-      buttonContainer: {
+    },
+    buttonContainer: {
         width: "60%",
         justifyContent: "center",
         alignItems: "center",
         marginTop: 20,
-      },
-      button: {
+    },
+    button: {
         backgroundColor: colores.fondoBarras,
         width: "100%",
         padding: 5,
         alignItems: "center",
         marginBottom: 10,
-      },
-      buttonText: {
+    },
+    buttonText: {
         color: colores.letra,
         fontSize: 16,
-      },
-      letraTitulo: {
+    },
+    letraTitulo: {
         fontSize: 20,
         fontWeight: "bold",
         color: colores.letra,
-      },
-      letra: {
+    },
+    letra: {
         fontSize: 16,
         color: colores.letra,
-      },
-      cabeceraMensaje: {
+    },
+    cabeceraMensaje: {
         backgroundColor: colores.fondoBarras,
         height: cabeceraMensajeHeight,
         padding: cabeceraMensajePadding,
         marginTop: cabeceraMensajeMargin,
         alignItems: "center",
         alignContent: "center",
-      },
+    },
 });
 
