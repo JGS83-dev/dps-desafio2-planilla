@@ -4,11 +4,12 @@ import {
     Text,
     StyleSheet,
     Alert,
-    View
+    View,
+    ScrollView
 } from 'react-native';
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Table, Row, Rows } from 'react-native-table-component';
 const Resultados = ({ navigation }) => {
 
     const [nombre, setNombre] = useState('');
@@ -55,6 +56,7 @@ const Resultados = ({ navigation }) => {
         CargarDatosFormulario();
     }, []);
 
+
     return (
 
         <ContenedorPrincipal titulo="Resultados"
@@ -62,31 +64,27 @@ const Resultados = ({ navigation }) => {
             contenido={(
               
                 <>
-                  <View style={styles.container}>
+                
+                  <View style={styless.container}>
+                  <Text style={styles.letraTitulo}>Planilla</Text>
                   {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
                         (
-                            <View style={styles.container}>
-                                <View style={styles.inputContainer}>
-                                <Text style={styles.letra}>Desc. Renta:</Text>
-                                    <Text style={styles.desc}>Descuento</Text>
-                                </View>
-
-                                <View style={styles.inputContainer}>
-                                <Text style={styles.letra}>Desc. ISSS:</Text>
-                                    <Text style={styles.desc}>Descuento</Text>
-                                </View>
-
-                                <View style={styles.inputContainer}>
-                                <Text style={styles.letra}>Desc. AFP:</Text>
-                                    <Text style={styles.desc}>Descuento</Text>
-                             
-                                </View>
-
-                                <View style={styles.inputContainer}>
-                                    <Text style={styles.letra}>Sueldo neto:</Text>
-                                    <Text style={styles.desc}>Descuento</Text>
-                                </View>
-                            </View>
+                            <ScrollView>
+                        <Table borderStyle={{borderWidth: 2, borderColor: '#171D26',backgroundColor:'black',}}>
+                            <Row data={['Nombre','Apellido','Sueldo','Renta','AFP','ISSS','Neto']}  textStyle={{color:'#fff', margin: 10, fontWeight:'bold'}}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
+                    </Table>
+                    </ScrollView>
                         )}
                     </View>
                    
@@ -98,12 +96,41 @@ const Resultados = ({ navigation }) => {
 
 export default Resultados
 
+
+const styless = StyleSheet.create({
+    container: { 
+        flex: 1, 
+        padding: 7, 
+        paddingTop: 30, 
+        backgroundColor: '#313E50',
+        justifyContent:'center',
+    },
+    head: { 
+    height: 65, 
+    backgroundColor: '#F2F4F7'
+    },
+    text: { 
+        margin: 6 ,
+        color:'#171D26'
+    }
+  });
+
+
+
 const styles = StyleSheet.create({
     letra: {
         fontSize: 24,
         fontWeight: 'bold',
         color: '#171D26',
         textAlign:'center',
+    },
+    letraTitulo: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: colores.letra,
+        textAlign:'center',
+        padding:5,
+        marginBottom:5,
     },
     desc: {
         fontSize: 20,
