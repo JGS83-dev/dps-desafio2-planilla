@@ -11,6 +11,7 @@ import {
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const screenHeight = Dimensions.get("window").height;
 const cabeceraMensajeHeight = 0.07 * screenHeight;
 const cabeceraMensajePadding = 0.01 * screenHeight;
@@ -50,6 +51,7 @@ const Formulario = ({ navigation }) => {
                                 placeholder="Nombres"
                                 onChangeText={text => setNombre(text)}
                                 style={styles.input}
+                                required
                             />
                         </View>
 
@@ -60,6 +62,7 @@ const Formulario = ({ navigation }) => {
                                 placeholder="Apellido"
                                 onChangeText={text => setApellido(text)}
                                 style={styles.input}
+                                required
                             />
                         </View>
 
@@ -69,6 +72,7 @@ const Formulario = ({ navigation }) => {
                                 placeholder="Sueldo"
                                 onChangeText={text => setSueldo(text)}
                                 style={styles.input}
+                                required
                             />
                         </View>
 

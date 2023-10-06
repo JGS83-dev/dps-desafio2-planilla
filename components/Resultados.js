@@ -64,7 +64,35 @@ const Resultados = ({ navigation }) => {
                     {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
                         (
                             <View>
-                                <Text>Resultado</Text>
+                                <Text style={styles.letra}>Resultados</Text>
+
+                                <View style={styles.inputContainer}>
+                                    <Text style={styles.letra}>Desc. Renta:</Text>
+                                    <Text style={styles.desc}>
+                                        Aqui aplica el descuento
+                                    </Text>
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <Text style={styles.letra}>Desc. ISSS:</Text>
+                                    <Text style={styles.desc}>
+                                        Aqui aplica el descuento
+                                    </Text>
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <Text style={styles.letra}>Desc. AFP:</Text>
+                                    <Text style={styles.desc}>
+                                        Aqui aplica el descuento
+                                    </Text>
+                                </View>
+
+                                <View style={styles.inputContainer}>
+                                    <Text style={styles.letra}>Sueldo neto:</Text>
+                                    <Text style={styles.desc}>
+                                        Aqui aplica el descuento
+                                    </Text>
+                                </View>
                             </View>
                         )}
                 </>
@@ -77,8 +105,12 @@ export default Resultados
 
 const styles = StyleSheet.create({
     letra: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
+        color: colores.letra
+    },
+    desc: {
+        fontSize: 30,
         color: colores.letra
     }
 });
