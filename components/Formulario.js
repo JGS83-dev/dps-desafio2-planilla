@@ -6,7 +6,7 @@ import {
     Dimensions,
     View,
     TextInput,
-    Button,
+    TouchableOpacity
 } from 'react-native';
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -24,11 +24,14 @@ const Formulario = ({ navigation }) => {
 
     const GuardarDatosFormulario = async () => {
         try {
+            console.log('Guardando datos...');
             await AsyncStorage.setItem('nombre', nombre);
             await AsyncStorage.setItem('apellido', apellido);
-            await AsyncStorage.setItem('sueldo', sueldo);
+            await AsyncStorage.setItem('sueldo', sueldo.toString());
+            console.log('Datos guardados...');
+            navigation.navigate("Resultados");
         } catch (e) {
-            console.log('Ocurrio un error:', e)
+            console.log('Ocurrio un error:', e);
         }
     };
 
@@ -39,33 +42,42 @@ const Formulario = ({ navigation }) => {
 
             contenido={(
                 <>
-                    <Text style={styles.letraTitulo}>Complete los formularios</Text>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.letra}>Nombre:</Text>
-                        <TextInput
-                            placeholder="Nombres"
-                            onChangeText={text => setNombre(text)}
-                            style={styles.input}
-                        />
-                    </View>
+                    <View style={styles.container}>
+                        <Text style={styles.letraTitulo}>Complete los formularios</Text>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.letra}>Nombre:</Text>
+                            <TextInput
+                                placeholder="Nombres"
+                                onChangeText={text => setNombre(text)}
+                                style={styles.input}
+                            />
+                        </View>
 
 
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.letra}>Apellido:</Text>
-                        <TextInput
-                            placeholder="Apellido"
-                            onChangeText={text => setApellido(text)}
-                            style={styles.input}
-                        />
-                    </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.letra}>Apellido:</Text>
+                            <TextInput
+                                placeholder="Apellido"
+                                onChangeText={text => setApellido(text)}
+                                style={styles.input}
+                            />
+                        </View>
 
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.letra}>Sueldo:</Text>
-                        <TextInput
-                            placeholder="Sueldo"
-                            onChangeText={text => setSueldo(text)}
-                            style={styles.input}
-                        />
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.letra}>Sueldo:</Text>
+                            <TextInput
+                                placeholder="Sueldo"
+                                onChangeText={text => setSueldo(text)}
+                                style={styles.input}
+                            />
+                        </View>
+
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity style={styles.button}
+                                onPress={GuardarDatosFormulario}>
+                                <Text style={styles.buttonText}>Ver calculo de planilla</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </>
             )}></ContenedorPrincipal>
