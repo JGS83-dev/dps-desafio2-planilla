@@ -6,7 +6,7 @@ import {
     Dimensions,
     View,
     TextInput,
-    Button
+    Button,
 } from 'react-native';
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -31,37 +31,37 @@ const GuardarDatosFormulario = async () => {
 
 const Formulario = ({ navigation }) => {
     return (
-        
-            <ContenedorPrincipal titulo="Ejercicio Planilla"
-            navigation={navigation} 
+
+        <ContenedorPrincipal titulo="Ejercicio Planilla"
+            navigation={navigation}
 
             contenido={(
                 <>
-                 <Text style={styles.letraTitulo}>Complete los formularios</Text>
-                 <View style={styles.inputContainer}>
-                <Text style={styles.letra}>Nombre:</Text>
-                <TextInput
-                  placeholder="Nombres"
-                  style={styles.input}
-                />
-              </View>
+                    <Text style={styles.letraTitulo}>Complete los formularios</Text>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.letra}>Nombre:</Text>
+                        <TextInput
+                            placeholder="Nombres"
+                            style={styles.input}
+                        />
+                    </View>
 
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.letra}>Apellido:</Text>
-                <TextInput
-                  placeholder="Apellido"
-                  style={styles.input}
-                />
-              </View>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.letra}>Apellido:</Text>
+                        <TextInput
+                            placeholder="Apellido"
+                            style={styles.input}
+                        />
+                    </View>
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.letra}>Sueldo:</Text>
-                <TextInput
-                  placeholder="Sueldo"
-                  style={styles.input}
-                />
-              </View>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.letra}>Sueldo:</Text>
+                        <TextInput
+                            placeholder="Sueldo"
+                            style={styles.input}
+                        />
+                    </View>
                 </>
             )}></ContenedorPrincipal>
 
