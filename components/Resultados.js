@@ -60,10 +60,12 @@ const Resultados = ({ navigation }) => {
         <ContenedorPrincipal titulo="Resultados"
             navigation={navigation}
             contenido={(
+              
                 <>
-                    {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
+                  <View style={styles.container}>
+                  {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
                         (
-                            <View>
+                            <View style={styles.container}>
                                 <Text style={styles.letra}>Resultados</Text>
 
                                 <View style={styles.inputContainer}>
@@ -95,6 +97,8 @@ const Resultados = ({ navigation }) => {
                                 </View>
                             </View>
                         )}
+                    </View>
+                   
                 </>
             )}></ContenedorPrincipal>
 
@@ -105,14 +109,19 @@ export default Resultados
 
 const styles = StyleSheet.create({
     letra: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold',
         color: colores.letra,
         textAlign:'center',
     },
     desc: {
-        fontSize: 30,
+        fontSize: 24,
         color: colores.letra
-    }
+    },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });
 
