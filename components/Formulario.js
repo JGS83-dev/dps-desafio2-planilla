@@ -81,7 +81,7 @@ const Formulario = ({ navigation }) => {
 
     useEffect(() => {
         if (empleados.length > 0) {
-            console.log('Empleados actuales:', empleados);
+            // console.log('Empleados actuales:', empleados);
             inputNombre.current.clear();
             inputApellido.current.clear();
             inputSueldo.current.clear();
