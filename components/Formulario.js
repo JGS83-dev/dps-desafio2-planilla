@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ContenedorPrincipal from './ContenedorPrincipal';
 import {
     Text,
@@ -36,10 +36,37 @@ const Formulario = ({ navigation }) => {
             if (numEmpleados > 0) {
                 try {
                     // console.log('Guardando empleado...');
+                    let renta = 0;
+                    if (renta <= 325) {
+                        renta = 0;
+                    } else if (renta > 325 && renta <= 700) {
+                        renta = sueldo * (15 / 100);
+                    } else if (renta > 700 && renta <= 1200) {
+                        renta = sueldo * (17 / 100);
+                    } else if (renta > 1200 && renta <= 2200) {
+                        renta = sueldo * (21 / 100);
+                    } else if (renta > 2200 && renta <= 3700) {
+                        renta = sueldo * (25 / 100);
+                    } else {
+                        renta = sueldo * (29 / 100);
+                    }
+
+                    let seguro = sueldo * (3 / 100);
+                    seguro = seguro.toFixed(2);
+                    let pension = sueldo * (7.25 / 100);
+                    pension = pension.toFixed(2);
+                    let neto = sueldo - renta - seguro - pension;
+                    neto = neto.toFixed(2);
+                    renta = renta.toFixed(2);
+
                     let tempEmpleado = {
                         nombre: nombre,
                         apellido: apellido,
-                        sueldo: sueldo
+                        sueldo: sueldo,
+                        renta: renta,
+                        pension: pension,
+                        seguro: seguro,
+                        neto: neto
                     }
                     // console.log('Info del empleado:', tempEmpleado);
                     setEmpleados([...empleados, tempEmpleado])
@@ -54,7 +81,7 @@ const Formulario = ({ navigation }) => {
 
     useEffect(() => {
         if (empleados.length > 0) {
-            // console.log('Empleados actuales:', empleados);
+            console.log('Empleados actuales:', empleados);
             inputNombre.current.clear();
             inputApellido.current.clear();
             inputSueldo.current.clear();
