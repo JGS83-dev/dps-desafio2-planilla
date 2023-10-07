@@ -157,6 +157,7 @@ const Formulario = ({ navigation }) => {
                                 placeholder="Sueldo"
                                 onChangeText={text => setSueldo(text)}
                                 style={styles.input}
+                                keyboardType="numeric"
                                 required
                             />
                         </View>
