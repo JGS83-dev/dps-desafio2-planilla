@@ -12,26 +12,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Table, Row, Rows } from 'react-native-table-component';
 const Resultados = ({ navigation }) => {
 
-    const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
-    const [sueldo, setSueldo] = useState(0);
+    const [planilla, setPlanilla] = useState([]);
+    const cabecera =['Nombre', 'Apellido', 'Sueldo', 'Renta', 'AFP', 'ISSS', 'Neto'];
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const CargarDatosFormulario = async () => {
             try {
-                const nombreStorage = await AsyncStorage.getItem('nombre');
-                const apellidoStorage = await AsyncStorage.getItem('apellido');
-                const sueldoStorage = await AsyncStorage.getItem('sueldo');
+                const planillaStorage = await AsyncStorage.getItem('planilla');
                 console.log("Leyendo datos...");
-                // console.log(nombreStorage);
-                // console.log(apellidoStorage);
-                // console.log(sueldoStorage);
-                if (nombreStorage !== null && apellidoStorage !== null && sueldoStorage !== 0) {
-                    await setNombre(nombreStorage);
-                    await setApellido(apellidoStorage);
-                    await setSueldo(sueldoStorage);
-                    setIsLoading(false);
+                if (planillaStorage !== null) {
+                    setPlanilla(JSON.parse(planillaStorage));
                 } else {
                     Alert.alert(
                         'Pasos requeridos',
@@ -56,38 +47,33 @@ const Resultados = ({ navigation }) => {
         CargarDatosFormulario();
     }, []);
 
+    useEffect(() => {
+        if (planilla.length > 0) {
+            // console.log('Info parseada:', planilla);
+            setIsLoading(false);
+        }
+    }, [planilla])
+
 
     return (
 
         <ContenedorPrincipal titulo="Resultados"
             navigation={navigation}
             contenido={(
-              
                 <>
-                
-                  <View style={styless.container}>
-                  <Text style={styles.letraTitulo}>Planilla</Text>
-                  {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
-                        (
-                            <ScrollView>
-                        <Table borderStyle={{borderWidth: 2, borderColor: '#171D26',backgroundColor:'black',}}>
-                            <Row data={['Nombre','Apellido','Sueldo','Renta','AFP','ISSS','Neto']}  textStyle={{color:'#fff', margin: 10, fontWeight:'bold'}}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                            <Row data={['Wilfredo','Acosta','1000','90','12','23','900']} style={styless.head} textStyle={styless.text}/>
-                    </Table>
-                    </ScrollView>
-                        )}
+                    <View style={styles.container}>
+                        <Text style={styles.letraTitulo}>Planilla</Text>
+                        {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
+                            (
+                                <ScrollView>
+                                    <Table borderStyle={{ borderWidth: 2, borderColor: '#171D26', backgroundColor: 'black', }}>
+                                        <Row data={cabecera} textStyle={styles.textHeader} />
+                                        {/* <Row data={planilla} style={styles.head} textStyle={styles.text} /> */}
+                                    </Table>
+                                </ScrollView>
+                            )}
                     </View>
-                   
+
                 </>
             )}></ContenedorPrincipal>
 
@@ -96,41 +82,20 @@ const Resultados = ({ navigation }) => {
 
 export default Resultados
 
-
-const styless = StyleSheet.create({
-    container: { 
-        flex: 1, 
-        padding: 7, 
-        paddingTop: 30, 
-        backgroundColor: '#313E50',
-        justifyContent:'center',
-    },
-    head: { 
-    height: 65, 
-    backgroundColor: '#F2F4F7'
-    },
-    text: { 
-        margin: 6 ,
-        color:'#171D26'
-    }
-  });
-
-
-
 const styles = StyleSheet.create({
     letra: {
         fontSize: 24,
         fontWeight: 'bold',
         color: '#171D26',
-        textAlign:'center',
+        textAlign: 'center',
     },
     letraTitulo: {
         fontSize: 20,
         fontWeight: "bold",
         color: colores.letra,
-        textAlign:'center',
-        padding:5,
-        marginBottom:5,
+        textAlign: 'center',
+        padding: 5,
+        marginBottom: 5,
     },
     desc: {
         fontSize: 20,
@@ -150,5 +115,25 @@ const styles = StyleSheet.create({
         marginTop: 5,
         justifyContent: "space-evenly",
     },
+    container: {
+        flex: 1,
+        padding: 7,
+        paddingTop: 30,
+        backgroundColor: '#313E50',
+        justifyContent: 'center',
+    },
+    head: {
+        height: 65,
+        backgroundColor: '#F2F4F7'
+    },
+    text: {
+        margin: 6,
+        color: '#171D26'
+    },
+    textHeader: {
+        color: '#fff',
+        margin: 10,
+        fontWeight: 'bold'
+    }
 });
 
