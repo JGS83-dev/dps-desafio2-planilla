@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import { colores } from '../config/colores';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Table, Row, Rows } from 'react-native-table-component';
+import { Table, Row } from 'react-native-table-component';
+
 const Resultados = ({ navigation }) => {
 
     const [planilla, setPlanilla] = useState([]);
-    const cabecera =['Nombre', 'Apellido', 'Sueldo', 'Renta', 'AFP', 'ISSS', 'Neto'];
+    const cabecera = ['Nombre', 'Apellido', 'Sueldo', 'Renta', 'AFP', 'ISSS', 'Neto'];
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const Resultados = ({ navigation }) => {
 
     useEffect(() => {
         if (planilla.length > 0) {
-            // console.log('Info parseada:', planilla);
+            // console.log('Planilla:', planilla);
             setIsLoading(false);
         }
     }, [planilla])
@@ -65,12 +66,18 @@ const Resultados = ({ navigation }) => {
                         <Text style={styles.letraTitulo}>Planilla</Text>
                         {isLoading ? (<Text style={styles.letra}>Calculando Planilla...</Text>) :
                             (
+                                // <>
                                 <ScrollView>
                                     <Table borderStyle={{ borderWidth: 2, borderColor: '#171D26', backgroundColor: 'black', }}>
                                         <Row data={cabecera} textStyle={styles.textHeader} />
-                                        {/* <Row data={planilla} style={styles.head} textStyle={styles.text} /> */}
+                                        {
+                                            planilla.map(ele => (
+                                                <Row data={[ele.nombre, ele.apellido, `$${ele.sueldo}`, `$${ele.renta}`, `$${ele.pension}`, `$${ele.seguro}`, `$${ele.neto}`]} style={styles.head} textStyle={styles.text} />
+                                            ))
+                                        }
                                     </Table>
                                 </ScrollView>
+                                // </>
                             )}
                     </View>
 
