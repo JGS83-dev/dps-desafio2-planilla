@@ -37,15 +37,15 @@ const Formulario = ({ navigation }) => {
                 try {
                     // console.log('Guardando empleado...');
                     let renta = 0;
-                    if (renta <= 325) {
+                    if (sueldo <= 325) {
                         renta = 0;
-                    } else if (renta > 325 && renta <= 700) {
+                    } else if (sueldo > 325 && sueldo <= 700) {
                         renta = sueldo * (15 / 100);
-                    } else if (renta > 700 && renta <= 1200) {
+                    } else if (sueldo > 700 && sueldo <= 1200) {
                         renta = sueldo * (17 / 100);
-                    } else if (renta > 1200 && renta <= 2200) {
+                    } else if (sueldo > 1200 && sueldo <= 2200) {
                         renta = sueldo * (21 / 100);
-                    } else if (renta > 2200 && renta <= 3700) {
+                    } else if (sueldo > 2200 && sueldo <= 3700) {
                         renta = sueldo * (25 / 100);
                     } else {
                         renta = sueldo * (29 / 100);
