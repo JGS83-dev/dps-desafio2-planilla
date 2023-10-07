@@ -134,6 +134,7 @@ const Formulario = ({ navigation }) => {
                                 placeholder="Nombres"
                                 onChangeText={text => setNombre(text)}
                                 style={styles.input}
+                                pattern="^[0-9]+$"
                                 required
                             />
                         </View>
